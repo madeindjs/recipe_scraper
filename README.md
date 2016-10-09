@@ -24,30 +24,35 @@ Or install it yourself as:
 
 1. import library:
 
-    require 'marmiton_crawler'
+~~~ruby
+require 'marmiton_crawler'
+~~~
 
 2. Create a new instance of `MarmitonCrawler::Recipe`
 
-    marmiton_url = 'http://www.marmiton.org/recettes/recette_burger-d-avocat_345742.aspx'
-    recipe = MarmitonCrawler::Recipe.new marmiton_url
+~~~ruby
+marmiton_url = 'http://www.marmiton.org/recettes/recette_burger-d-avocat_345742.aspx'
+recipe = MarmitonCrawler::Recipe.new marmiton_url
+~~~
 
 3. Export as `json` or as an `Array` 
 
-    recipe.to_hash
-    # will return
-    # --------------
-    # { :cooktime => 7,
-    #        :image => "http://images.marmitoncdn.org/recipephotos/multiphoto/7b/7b4e95f5-37e0-4294-bebe-cde86c30817f_normal.jpg",
-    #        :ingredients => ["2 beaux avocat", "2 steaks hachés de boeuf", "2 tranches de cheddar", "quelques feuilles de salade", "1/2 oignon rouge", "1 tomate", "graines de sésame", "1 filet d'huile d'olive", "1 pincée de sel", "1 pincée de poivre"],
-    #        :preptime => 20,
-    #        :steps => ["Laver et couper la tomate en rondelles", "Cuire les steaks à la poêle avec un filet d'huile d'olive", "Saler et poivrer", "Toaster les graines de sésames", "Ouvrir les avocats en 2, retirer le noyau et les éplucher", "Monter les burger en plaçant un demi-avocat face noyau vers le haut, déposer un steak, une tranche de cheddar sur le steak bien chaud pour qu'elle fonde, une rondelle de tomate, une rondelle d'oignon, quelques feuilles de salade et terminer par la seconde moitié d'avocat", "Parsemer quelques graines de sésames."],
-    #        :title => "Burger d'avocat",
-    #  }
-    recipe.to_json
-    # will return
-    # --------------
-    # "{\"title\":\"Burger d'avocat\",\"preptime\":20,\"cooktime\":7,\"ingredients\":[\"2 beaux avocat\",\"2 steaks hachés de boeuf\",\"2 tranches de cheddar\",\"quelques feuilles de salade\",\"1/2 oignon rouge\",\"1 tomate\",\"graines de sésame\",\"1 filet d'huile d'olive\",\"1 pincée de sel\",\"1 pincée de poivre\"],\"steps\":[\"Laver et couper la tomate en rondelles\",\"Cuire les steaks à la poêle avec un filet d'huile d'olive\",\"Saler et poivrer\",\"Toaster les graines de sésames\",\"Ouvrir les avocats en 2, retirer le noyau et les éplucher\",\"Monter les burger en plaçant un demi-avocat face noyau vers le haut, déposer un steak, une tranche de cheddar sur le steak bien chaud pour qu'elle fonde, une rondelle de tomate, une rondelle d'oignon, quelques feuilles de salade et terminer par la seconde moitié d'avocat\",\"Parsemer quelques graines de sésames.\"],\"image\":\"http://images.marmitoncdn.org/recipephotos/multiphoto/7b/7b4e95f5-37e0-4294-bebe-cde86c30817f_normal.jpg\"}"
-
+~~~ruby
+recipe.to_hash
+# will return
+# --------------
+# { :cooktime => 7,
+#        :image => "http://images.marmitoncdn.org/recipephotos/multiphoto/7b/7b4e95f5-37e0-4294-bebe-cde86c30817f_normal.jpg",
+#        :ingredients => ["2 beaux avocat", "2 steaks hachés de boeuf", "2 tranches de cheddar", "quelques feuilles de salade", "1/2 oignon rouge", "1 tomate", "graines de sésame", "1 filet d'huile d'olive", "1 pincée de sel", "1 pincée de poivre"],
+#        :preptime => 20,
+#        :steps => ["Laver et couper la tomate en rondelles", "Cuire les steaks à la poêle avec un filet d'huile d'olive", "Saler et poivrer", "Toaster les graines de sésames", "Ouvrir les avocats en 2, retirer le noyau et les éplucher", "Monter les burger en plaçant un demi-avocat face noyau vers le haut, déposer un steak, une tranche de cheddar sur le steak bien chaud pour qu'elle fonde, une rondelle de tomate, une rondelle d'oignon, quelques feuilles de salade et terminer par la seconde moitié d'avocat", "Parsemer quelques graines de sésames."],
+#        :title => "Burger d'avocat",
+#  }
+recipe.to_json
+# will return
+# --------------
+# "{\"title\":\"Burger d'avocat\",\"preptime\":20,\"cooktime\":7,\"ingredients\":[\"2 beaux avocat\",\"2 steaks hachés de boeuf\",\"2 tranches de cheddar\",\"quelques feuilles de salade\",\"1/2 oignon rouge\",\"1 tomate\",\"graines de sésame\",\"1 filet d'huile d'olive\",\"1 pincée de sel\",\"1 pincée de poivre\"],\"steps\":[\"Laver et couper la tomate en rondelles\",\"Cuire les steaks à la poêle avec un filet d'huile d'olive\",\"Saler et poivrer\",\"Toaster les graines de sésames\",\"Ouvrir les avocats en 2, retirer le noyau et les éplucher\",\"Monter les burger en plaçant un demi-avocat face noyau vers le haut, déposer un steak, une tranche de cheddar sur le steak bien chaud pour qu'elle fonde, une rondelle de tomate, une rondelle d'oignon, quelques feuilles de salade et terminer par la seconde moitié d'avocat\",\"Parsemer quelques graines de sésames.\"],\"image\":\"http://images.marmitoncdn.org/recipephotos/multiphoto/7b/7b4e95f5-37e0-4294-bebe-cde86c30817f_normal.jpg\"}"
+~~~
 
 ## Development
 

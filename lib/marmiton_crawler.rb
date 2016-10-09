@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'json'
 require 'open-uri'
 require 'nokogiri'
 
@@ -54,6 +55,7 @@ module MarmitonCrawler
 
 
     def to_json
+      return self.to_a.to_json
     end
 
 

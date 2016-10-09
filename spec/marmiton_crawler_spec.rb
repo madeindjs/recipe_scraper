@@ -36,13 +36,16 @@ describe MarmitonCrawler do
 
 
   it 'should get ingredients' do
-
-
-
     array_exepted = ["2 beaux avocat", "2 steaks hachés de boeuf", "2 tranches de cheddar", "quelques feuilles de salade", "1/2 oignon rouge",
 "1 tomate", "graines de sésame", "1 filet d'huile d'olive", "1 pincée de sel", "1 pincée de poivre"]
     expect(@recipe.ingredients).to be_kind_of(Array)
     expect(@recipe.ingredients).to eq array_exepted
+  end
+
+
+  it 'should get steps' do
+    expect(@recipe.steps).to be_kind_of(Array)
+    expect(@recipe.steps.include?('Laver et couper la tomate en rondelles'))
   end
 
 

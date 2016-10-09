@@ -9,7 +9,7 @@ module MarmitonCrawler
 
   class Recipe
 
-    attr_reader :title, :preptime, :cooktime , :ingredients, :steps
+    attr_reader :title, :preptime, :cooktime , :ingredients, :steps, :image
 
     MARMITON_HOST = 'http://www.marmiton.org/'
 
@@ -17,6 +17,8 @@ module MarmitonCrawler
       if url.include? MARMITON_HOST
         @page =  Nokogiri::HTML(open(url).read)
         @title = @page.css('h1.m_title span.item span.fn').text
+
+        # get times
         @preptime = @page.css('p.m_content_recette_info span.preptime').text.to_i
         @cooktime = @page.css('p.m_content_recette_info span.cooktime').text.to_i
 
@@ -29,6 +31,9 @@ module MarmitonCrawler
         steps_text = @page.css('div.m_content_recette_todo').text
         @steps = sanitize(steps_text).split '. '
         @steps.delete_at(0) # to delete the first `Ingrédients (pour 2 personnes) :`
+
+        # get image
+        @image = @page.css('a.m_content_recette_illu img.m_pinitimage').attr('src').to_s
         
 
       else

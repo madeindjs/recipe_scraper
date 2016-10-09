@@ -49,4 +49,9 @@ describe MarmitonCrawler do
   end
 
 
+  it 'should get image url' do
+    expect(@recipe.image).to eq "http://images.marmitoncdn.org/recipephotos/multiphoto/7b/7b4e95f5-37e0-4294-bebe-cde86c30817f_normal.jpg"
+  end
+
+
 end

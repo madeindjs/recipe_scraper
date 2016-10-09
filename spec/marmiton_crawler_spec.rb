@@ -7,23 +7,31 @@ describe MarmitonCrawler do
     @recipe = MarmitonCrawler::Recipe.new marmiton_url
   end
 
+
   it 'has a version number' do
     expect(MarmitonCrawler::VERSION).not_to be nil
   end
 
+
   it 'should create the recipe' do
     expect(@recipe).not_to be nil
   end
+
 
   it 'should not instanciante the recipe because it\'s not a marmiton.org url' do
     url = 'http://www.google.fr'
     expect{MarmitonCrawler::Recipe.new url}.to raise_error(ArgumentError)
   end
 
+
   it 'should get the right title' do
     expect(@recipe.title).to eq("Burger d'avocat")
   end
 
 
+  it 'should get the right times' do
+    expect(@recipe.preptime).to eq(20)
+    expect(@recipe.cooktime).to eq(7)
+  end
 
 end

@@ -44,7 +44,7 @@ module MarmitonCrawler
 
 
     # export all informations to an array
-    def to_a
+    def to_hash
       attrs = Hash.new
       instance_variables.each do |var|
         str = var.to_s.gsub /^@/, ''
@@ -55,7 +55,7 @@ module MarmitonCrawler
 
 
     def to_json
-      return self.to_a.to_json
+      return self.to_hash.to_json
     end
 
 

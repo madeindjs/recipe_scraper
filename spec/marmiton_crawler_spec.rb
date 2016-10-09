@@ -62,7 +62,7 @@ describe MarmitonCrawler do
        :steps => ["Laver et couper la tomate en rondelles", "Cuire les steaks à la poêle avec un filet d'huile d'olive", "Saler et poivrer", "Toaster les graines de sésames", "Ouvrir les avocats en 2, retirer le noyau et les éplucher", "Monter les burger en plaçant un demi-avocat face noyau vers le haut, déposer un steak, une tranche de cheddar sur le steak bien chaud pour qu'elle fonde, une rondelle de tomate, une rondelle d'oignon, quelques feuilles de salade et terminer par la seconde moitié d'avocat", "Parsemer quelques graines de sésames."],
        :title => "Burger d'avocat",
  }
-    expect(@recipe.to_a).to eq exepted_hash
+    expect(@recipe.to_hash).to eq exepted_hash
   end
 
 

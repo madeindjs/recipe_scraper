@@ -13,9 +13,13 @@ module MarmitonCrawler
     attr_reader :title, :preptime, :cooktime , :ingredients, :steps, :image
 
     MARMITON_HOST = 'http://www.marmiton.org/'
+    MARMITON_MOBILE_HOST = 'http://m.marmiton.org/'
 
     def initialize(url)
-      if url.include? MARMITON_HOST
+      if url.include? MARMITON_HOST or url.include? MARMITON_MOBILE_HOST
+
+        url.gsub! MARMITON_MOBILE_HOST, MARMITON_HOST
+
         page =  Nokogiri::HTML(open(url).read)
         @title = page.css('h1.m_title span.item span.fn').text
 

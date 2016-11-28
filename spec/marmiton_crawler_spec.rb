@@ -72,4 +72,12 @@ describe MarmitonCrawler do
   end
 
 
+  it 'should a m.marmiton.org url into a valid url' do
+    url = 'http://m.marmiton.org/recettes/recette_burger-d-avocat_345742.aspx'
+    recipe = MarmitonCrawler::Recipe.new url
+    expect(recipe).not_to be nil
+    expect(recipe.title).to eq("Burger d'avocat")
+  end
+
+
 end

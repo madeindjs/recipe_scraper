@@ -3,10 +3,10 @@ require 'json'
 require 'open-uri'
 require 'nokogiri'
 
-require "marmiton_crawler/version"
+require "recipe_crawler/version"
 
 
-module MarmitonCrawler
+module RecipeCrawler
 
   class Recipe
 

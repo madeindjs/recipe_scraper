@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'marmiton_crawler/version'
+require 'recipe_crawler/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "marmiton_crawler"
-  spec.version       = MarmitonCrawler::VERSION
+  spec.name          = "recipe_crawler"
+  spec.version       = RecipeCrawler::VERSION
   spec.authors       = ["madeindjs"]
   spec.email         = ["madeindjs@gmail.com"]
 
-  spec.summary       = %q{A web scrawler to get a Marmiton's recipe}
+  spec.summary       = %q{A web scrawler to get a Marmiton's or 750g recipe}
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "https://github.com/madeindjs/marmiton_crawler"
+  spec.homepage      = "https://github.com/madeindjs/recipe_crawler"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

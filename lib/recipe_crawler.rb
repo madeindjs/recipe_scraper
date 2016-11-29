@@ -134,10 +134,19 @@ module RecipeCrawler
         @cooktime = page.css('ul.c-recipe-summary li time[itemprop=cookTime]').text.to_i
 
         @ingredients = []
-        css_select_ingredient = "div.c-recipe-ingredients ul.c-recipe-ingredients__list li.ingredient"
-        page.css(css_select_ingredient).each { |ing_node|
+        css_ingredient = "div.c-recipe-ingredients ul.c-recipe-ingredients__list li.ingredient"
+        page.css(css_ingredient).each { |ing_node|
           @ingredients << sanitize(ing_node.text)
         }
+
+        # get image
+        css_image = 'div.swiper-wrapper img.photo'
+        begin
+          @image = page.css(css_image).attr('src').to_s
+        rescue NoMethodError => e
+        end
+        
+        
 
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 

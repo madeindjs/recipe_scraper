@@ -37,6 +37,11 @@ describe RecipeCrawler do
     expect(@recipe_750g.steps.include?('Bien mélanger.'))
   end
 
+  it 'should get picture' do
+    bretzel = RecipeCrawler::Recipe.new 'http://www.750g.com/bretzel-r3339.htm'
+    expect(bretzel.image).to eq src="http://static.750g.com/images/auto-427/f3aa5fb6bb6f1059c4119c5b4cb0d720/bretzel.jpeg"
+  end
+
 
 
   it 'should export all informations to json' do

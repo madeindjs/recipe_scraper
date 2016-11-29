@@ -178,8 +178,8 @@ module RecipeCrawler
     def fetch_from_cuisineaz url
       if cuisineaz_host? url
         page =  Nokogiri::HTML(open(url).read)
-        # set data
-        
+        @title = page.css('#ficheRecette h1.fs36').text
+
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 
       end

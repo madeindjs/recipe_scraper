@@ -35,6 +35,7 @@ describe "http://www.cuisineaz.com recipe crawler" do
   it 'should get steps' do
     expect(@recipe.steps).to be_kind_of(Array)
     expect(@recipe.steps.include?('Nettoyez et coupez les concombres en fines rondelles'))
+    expect(@recipe.steps.include?('ÉTAPE 1')).to be(false)
   end
 
 

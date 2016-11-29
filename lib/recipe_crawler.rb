@@ -184,6 +184,12 @@ module RecipeCrawler
         @preptime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
         @cooktime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsCuisson').text.to_i
 
+        
+        @steps = []
+        page.css("#preparation span p.fs17").each { |step_node|
+          @steps << sanitize(step_node.text)
+        }
+
         @ingredients = []
         page.css("#ingredients ul li span").each { |ing_node|
           @ingredients << sanitize(ing_node.text)

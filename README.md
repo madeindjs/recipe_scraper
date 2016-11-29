@@ -1,15 +1,15 @@
-# MarmitonCrawler
+# RecipeCrawler
 
-A web scrawler to get a [Marmiton's recipes](http://www.marmiton.org/) *(a famous french cooking recipe website)*!  
+A web scrawler to get a [Marmiton](http://www.marmiton.org/) or [750g](http://www.750g.com)*(two famous french cooking recipe websites)*!  
 
-You'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/marmiton_crawler`. To experiment with that code, run `bin/console` for an interactive prompt.
+You'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/recipe_crawler`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'marmiton_crawler'
+gem 'recipe_crawler'
 ```
 
 And then execute:
@@ -18,21 +18,21 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install marmiton_crawler
+    $ gem install recipe_crawler
 
 ## Usage
 
 1. import library:
 
 ~~~ruby
-require 'marmiton_crawler'
+require 'recipe_crawler'
 ~~~
 
-2. Create a new instance of `MarmitonCrawler::Recipe`
+2. Create a new instance of `RecipeCrawler::Recipe`
 
 ~~~ruby
 marmiton_url = 'http://www.marmiton.org/recettes/recette_burger-d-avocat_345742.aspx'
-recipe = MarmitonCrawler::Recipe.new marmiton_url
+recipe = RecipeCrawler::Recipe.new marmiton_url
 ~~~
 
 3. Export as `json` or as an `Array` 
@@ -62,7 +62,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/madeindjs/marmiton_crawler. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/madeindjs/recipe_crawler. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License

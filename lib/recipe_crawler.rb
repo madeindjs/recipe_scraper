@@ -194,6 +194,11 @@ module RecipeCrawler
         page.css("#ingredients ul li span").each { |ing_node|
           @ingredients << sanitize(ing_node.text)
         }
+
+        begin
+          @image = page.css('#shareimg').attr('src').to_s
+        rescue NoMethodError => e
+        end
         
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 

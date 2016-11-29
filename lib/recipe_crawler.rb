@@ -180,6 +180,11 @@ module RecipeCrawler
         page =  Nokogiri::HTML(open(url).read)
         @title = page.css('#ficheRecette h1.fs36').text
 
+        # get times
+        @preptime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
+        @cooktime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsCuisson').text.to_i
+
+        
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 
       end

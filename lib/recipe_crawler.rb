@@ -94,6 +94,7 @@ module RecipeCrawler
         page =  Nokogiri::HTML(open(url).read)
         @title = page.css('h1.m_title span.item span.fn').text
 
+
         # get times
         @preptime = page.css('p.m_content_recette_info span.preptime').text.to_i
         @cooktime = page.css('p.m_content_recette_info span.cooktime').text.to_i
@@ -123,7 +124,12 @@ module RecipeCrawler
     # @param url [String] representing an url
     def fetch_from_g750 url
       if g750_host? url
-          # TODO: add logic here
+        page =  Nokogiri::HTML(open(url).read)
+        @title = page.css('h1.c-article__title').text
+
+        # get times
+        @preptime = page.css('ul.c-recipe-summary li time[itemprop=prepTime]').text.to_i
+        @cooktime = page.css('ul.c-recipe-summary li time[itemprop=prepTime]').text.to_i
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 
       end

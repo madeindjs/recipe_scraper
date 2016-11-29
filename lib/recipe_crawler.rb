@@ -14,7 +14,8 @@ module RecipeCrawler
     attr_reader :title, :preptime, :cooktime , :ingredients, :steps, :image
 
     MARMITON_HOST = {desktop: 'http://www.marmiton.org/', mobile: 'http://m.marmiton.org/'}
-    G750_HOST = 'http://www.750g.com'
+    G750_HOST = {desktop: 'http://www.750g.com'}
+    CUISINEAZ_HOST = {desktop: 'http://www.cuisineaz.com/'}
 
 
     
@@ -24,8 +25,13 @@ module RecipeCrawler
     def initialize url
       if marmiton_host? url
         fetch_from_marmiton url
+
       elsif g750_host? url
         fetch_from_g750 url
+
+      elsif cuisineaz_host? url
+        fetch_from_cuisineaz url
+
       else
         raise ArgumentError, "Instantiation cancelled (Host not supported)." 
       end
@@ -67,6 +73,7 @@ module RecipeCrawler
       return text
     end
 
+
     # test if url is from a valid marmiton.org host
     #
     # @param url [String] representing an url
@@ -81,7 +88,16 @@ module RecipeCrawler
     # @param url [String] representing an url
     # @return [Boolean] as true if coresponding to a valid url
     def g750_host? url
-      return url.include? G750_HOST
+      return url.include? G750_HOST[:desktop]
+    end
+
+
+    # test if url is from a valid cuisineaz.com host
+    #
+    # @param url [String] representing an url
+    # @return [Boolean] as true if coresponding to a valid url
+    def cuisineaz_host? url
+      return url.include? CUISINEAZ_HOST[:desktop]
     end
 
 
@@ -147,6 +163,40 @@ module RecipeCrawler
         css_image = 'div.swiper-wrapper img.photo'
         begin
           @image = page.css(css_image).attr('src').to_s
+        rescue NoMethodError => e
+        end
+        
+      else
+        raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 
+      end
+    end
+
+
+    # fill object properties from a 750g url
+    #
+    # @param url [String] representing an url
+    def fetch_from_cuisineaz url
+      if cuisineaz_host? url
+        page =  Nokogiri::HTML(open(url).read)
+        @title = page.css('#ficheRecette h1.fs36').text
+
+        # get times
+        @preptime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
+        @cooktime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsCuisson').text.to_i
+
+        
+        @steps = []
+        page.css("#preparation span p.fs17").each { |step_node|
+          @steps << sanitize(step_node.text)
+        }
+
+        @ingredients = []
+        page.css("#ingredients ul li span").each { |ing_node|
+          @ingredients << sanitize(ing_node.text)
+        }
+
+        begin
+          @image = page.css('#shareimg').attr('src').to_s
         rescue NoMethodError => e
         end
         

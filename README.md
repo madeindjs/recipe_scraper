@@ -1,6 +1,10 @@
 # RecipeCrawler
 
-A web scrawler to get a [Marmiton](http://www.marmiton.org/) or [750g](http://www.750g.com)*(two famous french cooking recipe websites)*!  
+A web scrawler to get recipe data just by its web url: **RecipeCrawler** support:
+
+* [marmiton.org](http://www.marmiton.org/) 
+* [750g.com](http://www.750g.com)
+* [cuisineaz.com](http://www.cuisineaz.com)
 
 You'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/recipe_crawler`. To experiment with that code, run `bin/console` for an interactive prompt.
 

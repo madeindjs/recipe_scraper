@@ -184,6 +184,10 @@ module RecipeCrawler
         @preptime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
         @cooktime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsCuisson').text.to_i
 
+        @ingredients = []
+        page.css("#ingredients ul li span").each { |ing_node|
+          @ingredients << sanitize(ing_node.text)
+        }
         
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 

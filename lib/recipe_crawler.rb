@@ -61,7 +61,9 @@ module RecipeCrawler
     # @param text [String] a text to sanitize
     # @return [String] as text corrected formated
     def sanitize text
-      ['  ', '\r\n', "\r\n"].each { |text_to_remove| text.gsub!(text_to_remove,'')}
+      ['  ', '\r\n', "\r\n", "\n", "\r"].each { |text_to_remove| 
+        text.gsub!(text_to_remove,'')
+      }
       return text
     end
 
@@ -129,7 +131,14 @@ module RecipeCrawler
 
         # get times
         @preptime = page.css('ul.c-recipe-summary li time[itemprop=prepTime]').text.to_i
-        @cooktime = page.css('ul.c-recipe-summary li time[itemprop=prepTime]').text.to_i
+        @cooktime = page.css('ul.c-recipe-summary li time[itemprop=cookTime]').text.to_i
+
+        @ingredients = []
+        css_select_ingredient = "div.c-recipe-ingredients ul.c-recipe-ingredients__list li.ingredient"
+        page.css(css_select_ingredient).each { |ing_node|
+          @ingredients << sanitize(ing_node.text)
+        }
+
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 
       end

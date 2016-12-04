@@ -23,4 +23,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "nokogiri"
+
+  spec.post_install_message = <<-MESSAGE
+!    The 'recipe_crawler' gem has been deprecated and has been replaced by 'recipe_scraper'.
+!    See: https://rubygems.org/gems/recipe_scraper
+!    And: https://github.com/madeindjs/recipe_scraper
+MESSAGE
 end

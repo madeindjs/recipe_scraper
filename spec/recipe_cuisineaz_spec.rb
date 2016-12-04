@@ -4,7 +4,7 @@ describe "http://www.cuisineaz.com recipe crawler" do
 
   before(:each) do
     marmiton_url = 'http://www.cuisineaz.com/recettes/concombre-a-la-creme-fraiche-et-a-la-ciboulette-56227.aspx'
-    @recipe = RecipeCrawler::Recipe.new marmiton_url
+    @recipe = RecipeSraper::Recipe.new marmiton_url
   end
 
 

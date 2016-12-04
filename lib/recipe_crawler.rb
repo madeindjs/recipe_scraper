@@ -23,6 +23,9 @@ module RecipeCrawler
     #
     # @param url [String] representing an url from Marmiton or 750g website
     def initialize url
+
+      warn "[DEPRECATION] `RecipeCrawler` is deprecated.  Please download & use `RecipeSraper` instead."
+
       if marmiton_host? url
         fetch_from_marmiton url
 

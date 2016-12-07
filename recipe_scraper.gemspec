@@ -5,7 +5,7 @@ require 'recipe_scraper/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "recipe_scraper"
-  spec.version       = RecipeSraper::VERSION
+  spec.version       = RecipeScraper::VERSION
   spec.authors       = ["madeindjs"]
   spec.email         = ["madeindjs@gmail.com"]
 

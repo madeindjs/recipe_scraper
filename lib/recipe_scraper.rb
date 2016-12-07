@@ -6,7 +6,7 @@ require 'nokogiri'
 require "recipe_scraper/version"
 
 
-module RecipeSraper
+module RecipeScraper
 
   # represent a recipe fetched from an Url
   class Recipe
@@ -179,7 +179,7 @@ module RecipeSraper
     def fetch_from_cuisineaz url
       if cuisineaz_host? url
         page =  Nokogiri::HTML(open(url).read)
-        @title = page.css('#ficheRecette h1.fs36').text
+        @title = page.css('h1').text
 
         # get times
         @preptime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
@@ -192,7 +192,7 @@ module RecipeSraper
         }
 
         @ingredients = []
-        page.css("#ingredients ul li span").each { |ing_node|
+        page.css("#ingredients li").each { |ing_node|
           @ingredients << sanitize(ing_node.text)
         }
 

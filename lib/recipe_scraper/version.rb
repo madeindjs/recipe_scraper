@@ -1,3 +1,3 @@
-module RecipeSraper
+module RecipeScraper
   VERSION = "2.2.0"
 end

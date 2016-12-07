@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["madeindjs"]
   spec.email         = ["madeindjs@gmail.com"]
 
-  spec.summary       = %q{A web scrawler to get a Marmiton's or 750g recipe}
+  spec.summary       = %q{A web scrawler to get a Marmiton's, cuisineaz or 750g recipe}
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/madeindjs/recipe_scraper"
   spec.license       = "MIT"

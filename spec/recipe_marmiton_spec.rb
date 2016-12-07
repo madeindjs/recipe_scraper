@@ -4,7 +4,7 @@ describe "http://www.marmiton.org recipe crawler" do
 
   before(:each) do
     marmiton_url = 'http://www.marmiton.org/recettes/recette_burger-d-avocat_345742.aspx'
-    @recipe = RecipeSraper::Recipe.new marmiton_url
+    @recipe = RecipeScraper::Recipe.new marmiton_url
   end
 
 
@@ -59,7 +59,7 @@ describe "http://www.marmiton.org recipe crawler" do
 
   it 'should a m.marmiton.org url into a valid url' do
     url = 'http://m.marmiton.org/recettes/recette_burger-d-avocat_345742.aspx'
-    recipe = RecipeSraper::Recipe.new url
+    recipe = RecipeScraper::Recipe.new url
     expect(recipe).not_to be nil
     expect(recipe.title).to eq("Burger d'avocat")
   end

@@ -115,8 +115,8 @@ module RecipeScraper
 
 
         # get times
-        @preptime = page.css('p.m_content_recette_info span.preptime').text.to_i
-        @cooktime = page.css('p.m_content_recette_info span.cooktime').text.to_i
+        @preptime = page.css('div.recipe-infos__timmings__preparation > span.recipe-infos__timmings__value').text.to_i
+        @cooktime = page.css('div.recipe-infos__timmings__cooking > span.recipe-infos__timmings__value').text.to_i
 
         # get ingredients
         @ingredients = []

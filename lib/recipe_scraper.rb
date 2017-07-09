@@ -111,7 +111,7 @@ module RecipeScraper
         url.gsub! MARMITON_HOST[:mobile], MARMITON_HOST[:desktop]
 
         page =  Nokogiri::HTML(open(url).read)
-        @title = page.css('h1.m_title span.item span.fn').text
+        @title = page.css('h1').text
 
 
         # get times

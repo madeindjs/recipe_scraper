@@ -18,7 +18,7 @@ module RecipeScraper
     CUISINEAZ_HOST = {desktop: 'http://www.cuisineaz.com/'}
 
 
-    
+
     # Instanciate a Recipe object with data crawled from an url
     #
     # @param url [String] representing an url from Marmiton or 750g website
@@ -34,7 +34,7 @@ module RecipeScraper
         fetch_from_cuisineaz url
 
       else
-        raise ArgumentError, "Instantiation cancelled (Host not supported)." 
+        raise ArgumentError, "Instantiation cancelled (Host not supported)."
       end
     end
 
@@ -68,7 +68,7 @@ module RecipeScraper
     # @param text [String] a text to sanitize
     # @return [String] as text corrected formated
     def sanitize text
-      ['  ', '\r\n', "\r\n", "\n", "\r"].each { |text_to_remove| 
+      ['  ', '\r\n', "\r\n", "\n", "\r"].each { |text_to_remove|
         text.gsub!(text_to_remove,'')
       }
       return text
@@ -130,10 +130,9 @@ module RecipeScraper
 
         # get image
         @image = page.css('a.m_content_recette_illu img.m_pinitimage').attr('src').to_s
-        
 
       else
-        raise ArgumentError, "Instantiation cancelled (ulr not from #{MARMITON_HOST})." 
+        raise ArgumentError, "Instantiation cancelled (ulr not from #{MARMITON_HOST})."
       end
     end
 
@@ -147,8 +146,8 @@ module RecipeScraper
         @title = page.css('h1.c-article__title').text
 
         # get times
-        @preptime = page.css('ul.c-recipe-summary li time[itemprop=prepTime]').text.to_i
-        @cooktime = page.css('ul.c-recipe-summary li time[itemprop=cookTime]').text.to_i
+        @preptime = page.css('ul.c-recipe-summary > li.c-recipe-summary__rating').text.to_i
+        @cooktime = page.css('ul.c-recipe-summary > li.c-recipe-summary__rating').text.to_i
 
         @steps = []
         css_step = "div[itemprop=recipeInstructions] p"
@@ -166,9 +165,9 @@ module RecipeScraper
           @image = page.css(css_image).attr('src').to_s
         rescue NoMethodError => e
         end
-        
+
       else
-        raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 
+        raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})."
       end
     end
 
@@ -185,7 +184,6 @@ module RecipeScraper
         @preptime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
         @cooktime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsCuisson').text.to_i
 
-        
         @steps = []
         page.css("#preparation span p.fs17").each { |step_node|
           @steps << sanitize(step_node.text)
@@ -200,12 +198,12 @@ module RecipeScraper
           @image = page.css('#shareimg').attr('src').to_s
         rescue NoMethodError => e
         end
-        
+
       else
-        raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})." 
+        raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})."
       end
     end
-  
+
   end
 
 end

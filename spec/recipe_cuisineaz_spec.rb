@@ -40,7 +40,7 @@ describe "http://www.cuisineaz.com recipe crawler" do
 
 
   it 'should get picture' do
-    expect(@recipe.image).to eq src="http://images.cuisineaz.com/240x192/17577995-325c-4390-8647-83605b9089a8_concombre-a-la-creme-fraiche-et-a-la-ciboulette-56227.jpg"
+    expect(@recipe.image).to eq src="http://static.cuisineaz.com/610x610/i12565-concombre-a-la-creme-fraiche-et-a-la-ciboulette.jpg"
   end
 
 

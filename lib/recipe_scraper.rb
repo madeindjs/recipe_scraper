@@ -125,9 +125,10 @@ module RecipeScraper
         end
 
         # get steps
-        steps_text = page.css('div.m_content_recette_todo').text
-        @steps = sanitize(steps_text).split '. '
-        @steps.delete_at(0) # to delete the first `Ingrédients (pour 2 personnes) :`
+        @steps = []
+        steps_text = page.css('ol.recipe-preparation__list').each do |step_tag|
+          @steps << sanitize(step_tag.text)
+        end
 
         # get image
         @image = page.css('#af-diapo-desktop-0_img').attr('src').to_s rescue NoMethodError

@@ -26,7 +26,7 @@ describe "http://www.cuisineaz.com recipe crawler" do
 
 
   it 'should get ingredients' do
-    array_exepted = ["2 concombres", "1 pot de crème fraîche épaisse", "1 botte de ciboulette fraîche", "le jus d'un citron non traité", "sel, poivre au goût"]
+    array_exepted = ["2 concombres", "200 ml de crème fraîche épaisse", "1 botte de ciboulette fraîche", "le jus d'un citron non traité", "sel, poivre du moulin"]
     expect(@recipe.ingredients).to be_kind_of(Array)
     expect(@recipe.ingredients).to eq array_exepted
   end

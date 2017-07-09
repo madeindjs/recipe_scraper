@@ -129,7 +129,7 @@ module RecipeScraper
         @steps.delete_at(0) # to delete the first `Ingrédients (pour 2 personnes) :`
 
         # get image
-        @image = page.css('a.m_content_recette_illu img.m_pinitimage').attr('src').to_s rescue NoMethodError
+        @image = page.css('#af-diapo-desktop-0_img').attr('src').to_s rescue NoMethodError
 
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{MARMITON_HOST})."

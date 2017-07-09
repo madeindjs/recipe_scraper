@@ -148,8 +148,8 @@ module RecipeScraper
         @title = page.css('h1.c-article__title').text
 
         # get times
-        @preptime = page.css('ul.c-recipe-summary > li.c-recipe-summary__rating').text.to_i
-        @cooktime = page.css('ul.c-recipe-summary > li.c-recipe-summary__rating').text.to_i
+        @preptime = sanitize(page.css('ul.c-recipe-summary > li.c-recipe-summary__rating[title="Temps de préparation"]').text).to_i
+        @cooktime = sanitize(page.css('ul.c-recipe-summary > li.c-recipe-summary__rating[title="Temps de cuisson"]').text).to_i
 
         @steps = []
         css_step = "div[itemprop=recipeInstructions] p"

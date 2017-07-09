@@ -68,7 +68,7 @@ module RecipeScraper
     # @param text [String] a text to sanitize
     # @return [String] as text corrected formated
     def sanitize text
-      ['  ', '\r\n', "\r\n", "\n", "\r", "\t"].each { |text_to_remove|
+      ['  ', '\r\n', "\r\n", "\n", "\r", "\t", / ^/, / $+/, /^  /, /^ /].each { |text_to_remove|
         text.gsub!(text_to_remove,'')
       }
       return text
@@ -120,7 +120,7 @@ module RecipeScraper
 
         # get ingredients
         @ingredients = []
-        ingredients_text = page.css('ul.recipe-ingredients__list li').each do |ingredient_tag|
+        ingredients_text = page.css('ul.recipe-ingredients__list li.recipe-ingredients__list__item').each do |ingredient_tag|
           @ingredients << sanitize(ingredient_tag.text)
         end
 

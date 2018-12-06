@@ -9,9 +9,9 @@ module RecipeScraper
   class Recipe
     attr_reader :title, :preptime, :cooktime, :ingredients, :steps, :image
 
-    MARMITON_HOST = { desktop: 'http://www.marmiton.org/', mobile: 'http://m.marmiton.org/' }.freeze
-    G750_HOST = { desktop: 'http://www.750g.com' }.freeze
-    CUISINEAZ_HOST = { desktop: 'http://www.cuisineaz.com/' }.freeze
+    MARMITON_HOST = { desktop: 'marmiton.org/', mobile: 'm.marmiton.org/' }.freeze
+    G750_HOST = { desktop: '750g.com' }.freeze
+    CUISINEAZ_HOST = { desktop: 'cuisineaz.com/' }.freeze
 
     # Instanciate a Recipe object with data crawled from an url
     #
@@ -143,7 +143,7 @@ module RecipeScraper
         @steps = page.css(css_step).text.split /[( ),(<br>)]/
 
         @ingredients = []
-        css_ingredient = 'div.c-recipe-ingredients ul.c-recipe-ingredients__list li.ingredient'
+        css_ingredient = 'ul.c-recipe-ingredients__list li'
         page.css(css_ingredient).each do |ing_node|
           @ingredients << sanitize(ing_node.text)
         end

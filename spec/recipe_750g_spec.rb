@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'http://www.750g.com recipe crawler' do
   before(:each) do
-    marmiton_url = 'http://www.750g.com/tarte-amandine-aux-pommes-dapi-r30157.htm'
+    marmiton_url = 'https://www.750g.com/tarte-amandine-aux-pommes-dapi-r30157.htm'
     @recipe_750g = RecipeScraper::Recipe.new marmiton_url
   end
 
@@ -31,7 +31,7 @@ describe 'http://www.750g.com recipe crawler' do
   end
 
   it 'should get picture' do
-    bretzel = RecipeScraper::Recipe.new 'http://www.750g.com/bretzel-r3339.htm'
+    bretzel = RecipeScraper::Recipe.new 'https://www.750g.com/bretzel-r3339.htm'
     expect(bretzel.image).to eq src = 'https://static.750g.com/images/auto-427/f3aa5fb6bb6f1059c4119c5b4cb0d720/bretzel.jpeg'
   end
 end

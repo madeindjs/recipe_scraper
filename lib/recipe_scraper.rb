@@ -183,7 +183,7 @@ module RecipeScraper
         end
 
         begin
-          @image = page.css('#ctl00_ContentPlaceHolder_recipeImgLarge').attr('src').to_s
+          @image = page.css('#ContentPlaceHolder_recipeImg').attr('data-src').to_s
         rescue NoMethodError => e
         end
 

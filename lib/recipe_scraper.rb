@@ -169,8 +169,8 @@ module RecipeScraper
         @title = page.css('h1').text
 
         # get times
-        @preptime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
-        @cooktime = page.css('#ctl00_ContentPlaceHolder_LblRecetteTempsCuisson').text.to_i
+        @preptime = page.css('#ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
+        @cooktime = page.css('#ContentPlaceHolder_LblRecetteTempsCuisson').text.to_i
 
         @steps = []
         page.css('#preparation p').each do |step_node|

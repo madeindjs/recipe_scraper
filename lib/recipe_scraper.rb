@@ -57,7 +57,7 @@ module RecipeScraper
     # @param text [String] a text to sanitize
     # @return [String] as text corrected formated
     def sanitize(text)
-      ['  ', '\r\n', "\r\n", "\n", "\r", "\t", / ^/, / $+/, /^  /, /^ /, /Etape [0-9]/].each do |text_to_remove|
+      ['  ', '\r\n', "\r\n", "\n", "\r", "\t", / ^/, / $+/, /^  /, /^ /, /Etape [0-9]/, 'Icone horloge', 'Icone casserole '].each do |text_to_remove|
         text.gsub!(text_to_remove, '')
       end
       text

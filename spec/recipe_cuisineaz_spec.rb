@@ -6,6 +6,10 @@ describe 'http://www.cuisineaz.com recipe crawler' do
     @recipe = RecipeScraper::Recipe.new marmiton_url
   end
 
+  it 'should get the right people' do
+    expect(@recipe.nb_of_persons).to eq(4)
+  end
+
   it 'should instanciante a recipe' do
     expect(@recipe).not_to be nil
   end

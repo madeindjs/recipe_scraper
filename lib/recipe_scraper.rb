@@ -120,7 +120,6 @@ module RecipeScraper
         # get image
         @image = begin
                    page.css('#af-diapo-desktop-0_img').attr('src').to_s
-
                  rescue StandardError
                    NoMethodError
                  end
@@ -138,8 +137,10 @@ module RecipeScraper
         @title = page.css('h1.c-article__title').text
 
         # get persons
-        @nb_of_persons = page.css('h2.u-title-section').text.match(/(\d{1,5})/)[1].to_i
-
+        nb_of_persons_matches = page.css('h2.u-title-section').text.match(/(\d{1,5})/)
+        if !nb_of_persons_matches.nil? && nb_of_persons_matches[1]
+          @nb_of_persons = nb_of_persons_matches[1].to_i
+        end
 
         # get times
         @preptime = sanitize(page.css('ul.c-recipe-summary > li.c-recipe-summary__rating[title="Temps de préparation"]').text).to_i
@@ -160,11 +161,8 @@ module RecipeScraper
 
         begin
           @image = page.css(css_image).attr('src').to_s
-
         rescue NoMethodError => e
         end
-
-
 
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})."

@@ -7,7 +7,7 @@ require 'recipe_scraper/version'
 module RecipeScraper
   # represent a recipe fetched from an Url
   class Recipe
-    attr_reader :title, :preptime, :cooktime, :ingredients, :steps, :image
+    attr_reader :title, :preptime, :cooktime, :ingredients, :steps, :image, :nb_of_persons
 
     MARMITON_HOST = { desktop: 'marmiton.org/', mobile: 'm.marmiton.org/' }.freeze
     G750_HOST = { desktop: '750g.com' }.freeze
@@ -98,6 +98,9 @@ module RecipeScraper
         page = Nokogiri::HTML(open(url).read)
         @title = page.css('h1').text
 
+        # get persons
+        @nb_of_persons = page.css('div.recipe-infos__quantity > span.recipe-infos__quantity__value').text.to_i
+
         # get times
         @preptime = page.css('div.recipe-infos__timmings__preparation > span.recipe-infos__timmings__value').text.to_i
         @cooktime = page.css('div.recipe-infos__timmings__cooking > span.recipe-infos__timmings__value').text.to_i
@@ -117,10 +120,10 @@ module RecipeScraper
         # get image
         @image = begin
                    page.css('#af-diapo-desktop-0_img').attr('src').to_s
+
                  rescue StandardError
                    NoMethodError
                  end
-
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{MARMITON_HOST})."
       end
@@ -133,6 +136,10 @@ module RecipeScraper
       if g750_host? url
         page = Nokogiri::HTML(open(url).read)
         @title = page.css('h1.c-article__title').text
+
+        # get persons
+        @nb_of_persons = page.css('h2.u-title-section').text.match(/(\d{1,5})/)[1].to_i
+
 
         # get times
         @preptime = sanitize(page.css('ul.c-recipe-summary > li.c-recipe-summary__rating[title="Temps de préparation"]').text).to_i
@@ -150,10 +157,14 @@ module RecipeScraper
 
         # get image
         css_image = 'div.swiper-wrapper img.photo'
+
         begin
           @image = page.css(css_image).attr('src').to_s
+
         rescue NoMethodError => e
         end
+
+
 
       else
         raise ArgumentError, "Instantiation cancelled (ulr not from #{G750_HOST})."
@@ -168,6 +179,8 @@ module RecipeScraper
         page = Nokogiri::HTML(open(url).read)
         @title = page.css('h1').text
 
+        # get persons
+        @nb_of_persons = page.css('#ContentPlaceHolder_LblRecetteNombre').text.to_i
         # get times
         @preptime = page.css('#ContentPlaceHolder_LblRecetteTempsPrepa').text.to_i
         @cooktime = page.css('#ContentPlaceHolder_LblRecetteTempsCuisson').text.to_i

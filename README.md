@@ -1,5 +1,7 @@
 # RecipeScraper
 
+[![Gem Version](https://badge.fury.io/rb/recipe_scraper.svg)](https://rubygems.org/gems/recipe_scraper)
+
 A web scrawler to get recipe data just by its web url: **RecipeScraper** support:
 
 * [marmiton.org](http://www.marmiton.org/) 

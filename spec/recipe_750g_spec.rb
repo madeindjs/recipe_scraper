@@ -6,6 +6,10 @@ describe 'http://www.750g.com recipe crawler' do
     @recipe_750g = RecipeScraper::Recipe.new marmiton_url
   end
 
+   it 'should get the right people' do
+    expect(@recipe_750g.nb_of_persons).to eq(6)
+  end
+
   it 'should instanciante a recipe' do
     expect(@recipe_750g).not_to be nil
   end
@@ -34,4 +38,6 @@ describe 'http://www.750g.com recipe crawler' do
     bretzel = RecipeScraper::Recipe.new 'https://www.750g.com/bretzel-r3339.htm'
     expect(bretzel.image).to eq src = 'https://static.750g.com/images/auto-427/f3aa5fb6bb6f1059c4119c5b4cb0d720/bretzel.jpeg'
   end
+
+
 end
